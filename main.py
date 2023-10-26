@@ -1,4 +1,4 @@
-from linkedlists import ListNode, arr_to_linked_list
+from problems.linkedlists import ListNode, arr_to_linked_list
 from typing import Optional
 
 list1, list2 = arr_to_linked_list([1,2,4]), arr_to_linked_list([1,3,4])

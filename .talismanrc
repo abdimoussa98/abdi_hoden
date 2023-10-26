@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: problems/group_anagrams.py
+  checksum: 4d5361bae6bacd47079fc01456d5e6c5e60741b6ecb83ffb15debc503af49e95
+version: "1.0"
