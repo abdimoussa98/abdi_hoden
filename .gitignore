@@ -1,6 +1,3 @@
-.replit
-replit.nix
 poetry.lock
 .breakpoints
 __pycache__/**
-pyproject.toml
