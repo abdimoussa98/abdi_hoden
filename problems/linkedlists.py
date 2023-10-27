@@ -19,12 +19,17 @@ def arr_to_linked_list(arr): # we can use this function to create our linked lis
     endOfList = node
   return dummy_head.next
 
+def print_linked_list(head):
+  while head:
+    print(head.val)
+    head = head.next
+
 
 ######################### LINKED LIST EASY PROBLEMS: #######################################
 
 # 1) https://leetcode.com/problems/reverse-linked-list/
 # Given the head of a singly linked list, reverse the list, and return the reversed list.
-def reverseList(self, head):
+def reverseList(head):
   prev = None
   curr = head
   next = None
@@ -125,10 +130,82 @@ def hasCycle(self, head):
 # L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
 # You may not modify the values in the list's nodes. Only nodes themselves may be changed.
 
+# ex) 1 -> 2 -> 3 -> 4, we want 1 -> 4 -> 2 -> 3
 
-
-def reorderList(self, head):
+def splitListInHalf(head):
   pass
+  # first_head = head
+  # second_head = None
+  # curr_slow = head
+  # cur_fast = head
+  # while cur_fast and cur_fast.next:
+  #   curr_slow = curr_slow.next
+  #   cur_fast = cur_fast.next.next
+    
+def reorderList(head):
+  HEAD = head
+  node_count = 0
+  mid_point = 0
+
+  while head:
+    node_count+=1
+    head=head.next
+  
+  mid_point = int(node_count/2) + 1
+  print("node_count", node_count)
+  print("mid_point", mid_point)
+
+  # split linkedlist at mid_point
+  def splitList(head, mid_point):
+    original_head = head
+    second_head=None
+    node_count=0
+    while head:
+      node_count+=1
+      if node_count == mid_point - 1:
+        second_head = head.next 
+        head.next = None
+        return original_head, second_head
+      head=head.next
+
+  first_head, second_head = splitList(HEAD, mid_point)
+  print("first_head", first_head.val)
+  print_linked_list(first_head)
+  print("second_head", second_head.val)
+  print_linked_list(second_head)
+
+
+
+  reversed_second_head = reverseList(second_head)
+  print("reversed_second_head", reversed_second_head.val)
+  print_linked_list(reversed_second_head)
+
+
+  def mergeMyLists(head, second_head):
+    dummy_head = ListNode()
+    curr = dummy_head
+
+    while head and second_head:
+      curr.next = head
+      head=head.next
+      curr.next.next = second_head
+
+      second_head=second_head.next
+      curr = curr.next.next
+
+    curr.next = second_head if second_head else None
+    return dummy_head.next
+  
+
+  result = mergeMyLists(first_head, reversed_second_head)
+  
+  return result
+
+
+
+reorderdList = reorderList(arr_to_linked_list([1,2,3,4,5]))
+print("jes")
+print_linked_list(reorderdList)
 
 
 
